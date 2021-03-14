@@ -8,6 +8,10 @@
 # name of "hass". It also assumes the system account name is hass. There are
 # reference files included in the repository that can be used.
 
+# Dependencies:
+# gcc
+# python3 venv
+
 HASS_GIT=~/hass-core
 HASS_HOME=/usr/lib/hass
 HASS_DATA=/var/lib/hass
@@ -45,6 +49,10 @@ ${HASS_HOME}/bin/pip install -r ${HASS_GIT}/requirements.txt
 
 # Fix permissions
 chown -R hass:hass ${HASS_HOME}
+
+# Setup data dir if its not there
+mkdir -p $HASS_DATA
+chown -R hass:hass $HASS_DATA
 
 # Start hass
 systemctl start hass
