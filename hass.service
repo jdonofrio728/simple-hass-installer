@@ -1,0 +1,15 @@
+[Unit]
+Description=Home assistant
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/lib/hass
+Restart=on-failure
+User=hass
+Group=hass
+
+ExecStart=/usr/lib/hass/bin/hass --config /var/lib/hass/ --log-rotate-days 1
+RestartForceExitStatus=100
+
+[Install]
+WantedBy=multi-user.target
